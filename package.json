@@ -28,6 +28,7 @@
   "homepage": "https://github.com/arthurjen/basic-mongoose#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "eslint": "^5.1.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.2"
