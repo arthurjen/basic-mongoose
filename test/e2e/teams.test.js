@@ -7,24 +7,29 @@ describe('Teams API', () => {
 
     let team;
 
-    beforeEach(() => {
-        const data = {
-            name: 'Evil Geniuses',
-            region: 'North America',
-            members: ['Arteezy', 'Suma1l', 's4', 'Cr1t-', 'Fly'],
-            coach: 'BuLba',
-            invited: false
-        };
+    // beforeEach(() => {
+    //     const data = {
+    //         name: 'Evil Geniuses',
+    //         region: 'North America',
+    //         members: ['Arteezy', 'Suma1l', 's4', 'Cr1t-', 'Fly'],
+    //         coach: 'BuLba',
+    //         invited: false
+    //     };
         
-        return request
-            .post('/api/teams')
-            .send(data)
-            .then(({ body }) => team = body);
-    });
+    //     return request
+    //         .post('/api/teams')
+    //         .send(data)
+    //         .then(({ body }) => team = body);
+    // });
 
-    it('should POST a team', () => {
-        assert.isOk(team._id);
+    it('should GET', () => {
+        return request
+            .get('/')
+            .then(res => console.log(res));
     });
+    // it('should POST a team', () => {
+    //     assert.isOk(team._id);
+    // });
 
     // it('should GET all teams', () => {
     //     return request
