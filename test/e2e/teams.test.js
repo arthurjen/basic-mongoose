@@ -65,6 +65,21 @@ describe('Teams API', () => {
             .del(`/api/teams/${team._id}`)
             .then(res => {
                 assert.equal(res.status, 200);
+            })
+            .then(() => {
+                return request.get(`/api/teams/${team._id}`);
+            })
+            .then(({ body }) => {
+                assert.isNotOk(body);
             });
     });
+
+    it('should return DEL error on bad id', () => {
+        return request
+            .del('/api/teams/5b4f7b676444b0102909d162')
+            .then(res => {
+                assert.equal(res.status, 404);
+            });
+    });
+
 });
