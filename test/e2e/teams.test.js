@@ -22,7 +22,23 @@ describe('Teams API', () => {
             .then(({ body }) => team = body);
     });
 
-    it('saves a team', () => {
+    it('should POST a team', () => {
         assert.isOk(team._id);
-    })
+    });
+
+    it('should GET all teams', () => {
+        return request
+            .get('/api/teams')
+            .then(({ body }) => {
+                assert.deepEqual(body, [team]);
+            });
+    });
+
+    it('should GET a team by id', () => {
+        return request
+            .get(`/api/teams/${team._id}`)
+            .then(({ body }) => {
+                assert.deepEqual(body, team);
+            });
+    });
 });
