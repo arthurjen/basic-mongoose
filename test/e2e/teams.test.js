@@ -1,9 +1,20 @@
 const { assert } = require('chai');
-const request = require('./request');
 const { dropCollection } = require('./db');
 
+
+const { createServer } = require('http');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+chai.use(chaiHttp);
+
+const app = require('../../lib/app-koa');
+const server = createServer(app);
+// const request = chai.request(server).keepOpen();
+
+
+
 describe('Teams API', () => {
-    beforeEach(() => dropCollection('teams'));
+    // beforeEach(() => dropCollection('teams'));
 
     let team;
 
@@ -22,10 +33,21 @@ describe('Teams API', () => {
     //         .then(({ body }) => team = body);
     // });
 
-    it('should GET', () => {
-        return request
-            .get('/')
-            .then(res => console.log(res));
+    it('should POST a team', () => {
+        const data = {
+            name: 'Evil Geniuses',
+            region: 'North America',
+            members: ['Arteezy', 'Suma1l', 's4', 'Cr1t-', 'Fly'],
+            coach: 'BuLba',
+            invited: false
+        };
+        return chai.request(app.callback())
+            .post('/api/teams')
+            .send(data)
+            .then(res => {
+                // console.log(res);
+                assert.isOk(res);
+            });
     });
     // it('should POST a team', () => {
     //     assert.isOk(team._id);
