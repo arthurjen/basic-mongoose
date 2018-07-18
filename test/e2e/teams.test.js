@@ -59,4 +59,12 @@ describe('Teams API', () => {
                 assert.deepEqual(body, team);
             });
     });
+
+    it('should DELETE a team', () => {
+        return request
+            .del(`/api/teams/${team._id}`)
+            .then(res => {
+                assert.equal(res.status, 200);
+            });
+    });
 });
