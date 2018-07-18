@@ -14,7 +14,7 @@ const server = createServer(app);
 
 
 describe('Teams API', () => {
-    // beforeEach(() => dropCollection('teams'));
+    beforeEach(() => dropCollection('teams'));
 
     let team;
 
@@ -33,17 +33,9 @@ describe('Teams API', () => {
     //         .then(({ body }) => team = body);
     // });
 
-    it('should POST a team', () => {
-        const data = {
-            name: 'Evil Geniuses',
-            region: 'North America',
-            members: ['Arteezy', 'Suma1l', 's4', 'Cr1t-', 'Fly'],
-            coach: 'BuLba',
-            invited: false
-        };
+    it('should GET', () => {
         return chai.request(app.callback())
-            .post('/api/teams')
-            .send(data)
+            .get('/5')
             .then(res => {
                 // console.log(res);
                 assert.isOk(res);
