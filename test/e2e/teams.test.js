@@ -66,21 +66,21 @@ describe('Teams API', () => {
             });
     });
 
-    // it('should PUT a team', () => {
-    //     team.name = 'EG';
-    //     return request
-    //         .put(`/api/teams/${team._id}`)
-    //         .send(team)
-    //         .then(({ body }) => {
-    //             assert.deepEqual(body, team);
-    //         });
-    // });
+    it('should PUT a team', () => {
+        team.name = 'EG';
+        return request
+            .put(`/api/teams/${team._id}`)
+            .send(team)
+            .then(({ body }) => {
+                assert.deepEqual(body, team);
+            });
+    });
 
-    // it('should DELETE a team', () => {
-    //     return request
-    //         .del(`/api/teams/${team._id}`)
-    //         .then(res => {
-    //             assert.equal(res.status, 200);
-    //         });
-    // });
+    it('should DELETE a team', () => {
+        return request
+            .del(`/api/teams/${team._id}`)
+            .then(({ body }) => {
+                assert.isTrue(body.removed);
+            });
+    });
 });
